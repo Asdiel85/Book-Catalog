@@ -18,6 +18,7 @@ exports.getUserBooks = (userId) => {
 
 exports.getById = (bookId) => Book.findById(bookId);
 
-exports.updateBook = (bookId, data) => Book.findByIdAndUpdate(bookId, data, {runValidators: true, new: true})
+exports.updateBook = (bookId, data) =>
+  Book.findByIdAndUpdate(bookId, data, { runValidators: true, new: true });
 
-exports.deleteBook = (bookId) => Book.findByIdAndDelete(bookId)
+exports.deleteBook = (bookId) => Book.findByIdAndDelete(bookId);
