@@ -1,19 +1,10 @@
 const router = require("express").Router();
-const multer = require("multer");
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "images/");
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now();
-    cb(null, uniqueSuffix + file.originalname);
-  },
-});
-const upload = multer({ storage: storage });
-
+const multer = require('multer')
+const multerConfig = require('../config/multerConfig')
 const bookManager = require("../managers/bookManager");
 const { routeGuard } = require("../middlewares/authMiddleware");
+
+const upload = multerConfig(multer)
 
 router.post("/create", routeGuard, upload.single("image"), async (req, res) => {
   const { title, author, genre, description } = req.body;
